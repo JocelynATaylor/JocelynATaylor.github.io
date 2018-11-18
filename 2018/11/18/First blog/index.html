@@ -12,16 +12,17 @@
 <meta property="og:site_name" content="Jocelyn space">
 <meta property="og:description" content="1.XSS漏洞&amp;ensp;&amp;ensp;&amp;ensp;英文全称为：Cross Site Script &amp;ensp;&amp;ensp;&amp;ensp;中文名称为：跨站脚本&amp;ensp;&amp;ensp;&amp;ensp;概念：实际是客户端代码注入的一种，通常注入代码是JavaScript。黑客通过“HTML注入”，篡改网页，插入恶意脚本。&amp;ensp;&amp;ensp;&amp;ensp;类型： &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS.PNG">
-<meta property="og:image" content="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS_0.PNG">
-<meta property="og:image" content="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS_1.PNG">
-<meta property="og:image" content="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS_2.PNG">
-<meta property="og:image" content="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/URL_1.PNG">
-<meta property="og:updated_time" content="2018-11-18T13:04:02.134Z">
+<meta property="og:image" content="http://img.027cgb.com/610984/XSS.PNG">
+<meta property="og:image" content="http://img.027cgb.com/610984/XSS_0.PNG">
+<meta property="og:image" content="http://img.027cgb.com/610984/XSS_1.PNG">
+<meta property="og:image" content="http://img.027cgb.com/610984/XSS_2.PNG">
+<meta property="og:image" content="http://img.027cgb.com/610984/URL_1.PNG
+">
+<meta property="og:updated_time" content="2018-11-18T13:35:14.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web常见的漏洞解析">
 <meta name="twitter:description" content="1.XSS漏洞&amp;ensp;&amp;ensp;&amp;ensp;英文全称为：Cross Site Script &amp;ensp;&amp;ensp;&amp;ensp;中文名称为：跨站脚本&amp;ensp;&amp;ensp;&amp;ensp;概念：实际是客户端代码注入的一种，通常注入代码是JavaScript。黑客通过“HTML注入”，篡改网页，插入恶意脚本。&amp;ensp;&amp;ensp;&amp;ensp;类型： &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS.PNG">
+<meta name="twitter:image" content="http://img.027cgb.com/610984/XSS.PNG">
   
     <link rel="alternate" href="/atom.xml" title="Jocelyn space" type="application/atom+xml">
   
@@ -107,20 +108,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p></p><h4>1.XSS漏洞</h4><br>&ensp;&ensp;&ensp;英文全称为：Cross Site Script <br><br>&ensp;&ensp;&ensp;中文名称为：跨站脚本<br><br>&ensp;&ensp;&ensp;概念：实际是客户端代码注入的一种，通常注入代码是JavaScript。黑客通过“HTML注入”，篡改网页，插入恶意脚本。<br><br>&ensp;&ensp;&ensp;类型： <br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;1. <strong>存储型XSS</strong>：访问网站，触发XSS ；关键点：XSS内容存放在数据库中，从数据库中提取<br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;2. <strong>反射型XSS</strong>：其特点实可以在url中看到XSS脚本；关键点：直接从URL中提取XSS脚本内容<br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;3. <strong>DOM型XSS</strong>：其特点是XSS触发点在URL的哈希中；<br><p></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS.PNG" width="1200" height="250"></h2><p>&ensp;&ensp;&ensp;&ensp;<font size="4">XSS最普遍的测试和证明方法：<strong>弹窗测试</strong></font><br><br>在如下的测试窗口中：<br><br><img src="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS_0.PNG" alt=""><br><br>利用HackBar插件，利用浏览器能识别的标签script标签，在html页面中插入JavaScript脚本，在中间加上alert警告框函数：<br><br><img src="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS_1.PNG" alt=""><br><br>点击提交，成功弹窗：<br><br><img src="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/XSS_2.PNG" alt=""><br><br><br>JavaScript函数有：<strong>警告框 alert()；确认框 confirm()；提示框 prompt();</strong></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://img.027cgb.com/610984/XSS.PNG" width="1200" height="250"></h2><p>&ensp;&ensp;&ensp;&ensp;<font size="4">XSS最普遍的测试和证明方法：<strong>弹窗测试</strong></font><br><br>在如下的测试窗口中：<br><br><img src="http://img.027cgb.com/610984/XSS_0.PNG" alt=""><br><br>利用HackBar插件，利用浏览器能识别的标签script标签，在html页面中插入JavaScript脚本，在中间加上alert警告框函数：<br><br><img src="http://img.027cgb.com/610984/XSS_1.PNG" alt=""><br><br>点击提交，成功弹窗：<br><br><img src="http://img.027cgb.com/610984/XSS_2.PNG" alt=""><br><br><br>JavaScript函数有：<strong>警告框 alert()；确认框 confirm()；提示框 prompt();</strong></p>
 <p></p><h4>2.CSRF漏洞</h4><br>&ensp;&ensp;&ensp;&ensp;攻击者盗用了你的身份，以你的名义发送恶意请求。CSRF能够做的事情包括：以你名义发送邮件，发消息，盗取你的账号等<br><br>&ensp;&ensp;&ensp;&ensp;在测试过程中，通过对比正常输入的截包，发现其不同之处，再进行不断猜测与尝试。 eg:DVWA的medium等级中，需要经过抓包对比，发现头部referer中不同，在经过不断的尝试发现referer只要包含host就能绕过限制。<p></p>
 <p></p><h4>3.点击劫持</h4><br>&ensp;&ensp;&ensp;&ensp;网页层层叠，通过覆盖不可见的框架（iframe框架+透明度）误导受害者点击而造成损失<br><p></p>
-<p></p><h4>4.URL跳转</h4><br>&ensp;&ensp;&ensp;&ensp;借助未验证的URL跳转，将应用程序引导到不安全的地方<br><br>&ensp;&ensp;&ensp;&ensp;实现方式：Header头跳转、Javascript跳转、META便签跳转<br><br>&ensp;&ensp;&ensp;&ensp;形式：<br><img src="https://raw.githubusercontent.com/JocelynATaylor/JocelynATaylor.github.io/master/URL_1.PNG" width="400" height="80"><p></p>
+<p></p><h4>4.URL跳转</h4><br>&ensp;&ensp;&ensp;&ensp;借助未验证的URL跳转，将应用程序引导到不安全的地方<br><br>&ensp;&ensp;&ensp;&ensp;实现方式：Header头跳转、Javascript跳转、META便签跳转<br><br>&ensp;&ensp;&ensp;&ensp;形式：<br><img src="http://img.027cgb.com/610984/URL_1.PNG
+" width="400" height="80"><p></p>
 <p></p><h4>5.<a href="https://shell01.top/2018/11/09/sql-inject-01/" target="_blank" rel="noopener">SQL注入</a></h4><br>&ensp;&ensp;&ensp;&ensp;攻击者利用这个漏洞，可以访问或修改数据，或者利用潜在的数据库漏洞进行攻击<br><br>&ensp;&ensp;&ensp;&ensp;必备条件：A.可以控制输入的数据 B.服务器要执行的代码拼接了控制的数据<br><br>&ensp;&ensp;&ensp;&ensp;本质：数据和代码未分离，即数据当做了代码来执行<br><br>例如：<br><br> username=admin’and 1=2union select version()–&amp;passwords // 查询版本<br> username=admin’and 1=2union select user()–&amp;passwords //查询用户<p></p>
 <p></p><h4>6.命令注入</h4><br>&ensp;&ensp;&ensp;&ensp;命令注入流程三部曲：是否调用可执行系统命令—函数或函数的参数是否可控—是否拼接注入命令<br><br>&ensp;&ensp;&ensp;&ensp;其中，php中常见的执行体统命令有的<br><br>system函数：<br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<strong>&lt;?php system(“ls /“);?&gt;</strong> <br><br>exec函数：<br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<strong>&lt; ?php  echo exec(“whoami”); ?&gt;</strong> <p></p>
 <p>shell_exec函数：<br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<strong>string shell_exec ( string $cmd )</strong></p>
 <p>eval函数：<br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<strong>&lt;?php @eval($_POST[‘aaa’]);?&gt; </strong>  //一句话木马<br></p>
 <p></p><h4>7.文件操作漏洞</h4><br>&ensp;&ensp;&ensp;&ensp;文件操作漏洞包含：文件上传、文件下载、文件包含漏洞（本地文件包含LFI以及远程文件包含RFI）<br><br>&ensp;&ensp;&ensp;&ensp;常用文件包含函数：<br><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<strong>Include()、require()、include_once()、require_once() </strong><p></p>
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><br></h2><font color="white"><br>小编有话说：emmm学习进度有些慢啊…博客的制作与主题设置，都一直在踩坑…希望自己改天能整出一份“博客踩坑记”。第一次博客制作，也只能这样子先了…要赶紧投入到实验中啊！emmm加油！</font>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><br></h2><font color="white"><br>小编有话说：emmm学习进度有些慢啊…博客的制作与主题设置，都一直在踩坑…希望自己改天能整出一份“博客踩坑记”。第一次博客制作，只能这样子先了…要赶紧投入到实验中啊！emmm加油！</font>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://JocelynATaylor.github.io/2018/11/18/First blog/" data-id="cjomwj2710002qoqq6zxbc2q4" class="article-share-link">分享</a>
+      <a data-url="http://JocelynATaylor.github.io/2018/11/18/First blog/" data-id="cjomxcfmc00006sqqipsn20ax" class="article-share-link">分享</a>
       
       
     </footer>

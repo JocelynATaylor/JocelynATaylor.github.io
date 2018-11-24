@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>文件上传漏洞 | Jocelyn space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;Upload-labs 是一个典型的文件上传漏洞的靶场。师兄们之前也介绍过，可以点击下载。&amp;ensp;&amp;ensp;&amp;ensp;安装方法与DVWA的方法类似，将文件放在phpStudy的WWW文件下，访问本地地址下的upload-labs的文件名。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传漏洞">
+<meta property="og:url" content="http://JocelynATaylor.github.io/2018/11/24/文件漏洞/index.html">
+<meta property="og:site_name" content="Jocelyn space">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;Upload-labs 是一个典型的文件上传漏洞的靶场。师兄们之前也介绍过，可以点击下载。&amp;ensp;&amp;ensp;&amp;ensp;安装方法与DVWA的方法类似，将文件放在phpStudy的WWW文件下，访问本地地址下的upload-labs的文件名。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf9691623c92.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf969163695b.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf9546ac586a.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf9546c5b3ea.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf9546accac3.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf9546b799df.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf9546bddb8b.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf965b21a66b.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf965b2689b3.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/24/5bf965b26a4f4.png">
+<meta property="og:updated_time" content="2018-11-24T16:04:13.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件上传漏洞">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;Upload-labs 是一个典型的文件上传漏洞的靶场。师兄们之前也介绍过，可以点击下载。&amp;ensp;&amp;ensp;&amp;ensp;安装方法与DVWA的方法类似，将文件放在phpStudy的WWW文件下，访问本地地址下的upload-labs的文件名。">
+<meta name="twitter:image" content="https://i.loli.net/2018/11/24/5bf9691623c92.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jocelyn space" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2018/11/22/5bf69d6f334de.jpeg">
+    <h2 class="author">Jocelyn</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>3</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-文件漏洞" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/24/文件漏洞/" class="article-date">
+  <time class="post-time" datetime="2018-11-24T15:32:54.676Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br>
+    <span class="post-day">24</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      文件上传漏洞
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&ensp;&ensp;&ensp;<strong>Upload-labs 是一个典型的文件上传漏洞的靶场。师兄们之前也介绍过，可以<a href="http://39.108.116.229/Upload-labs.zip" target="_blank" rel="noopener">点击下载</a></strong>。<br><br>&ensp;&ensp;&ensp;<strong>安装方法与DVWA的方法类似，将文件放在phpStudy的WWW文件下，访问本地地址下的upload-labs的文件名。</strong><br><a id="more"></a><br>例如小编存放的位置：<br><img src="https://i.loli.net/2018/11/24/5bf9691623c92.png" alt="upload_01.PNG" title="upload_01.PNG"><br>则打开目录为：<br><img src="https://i.loli.net/2018/11/24/5bf969163695b.png" alt="upload_02.PNG" title="upload_02.PNG"></p>
+<h2 id="upload-labs-Pass-01"><a href="#upload-labs-Pass-01" class="headerlink" title="upload-labs Pass-01"></a>upload-labs Pass-01</h2><p><strong>首先，在测试前，我们得进行一下正常的上传测试。上传一张正常的照片后，用burpsuite抓包，我们找到上传的图片所放的路径：</strong><br><br><img src="https://i.loli.net/2018/11/24/5bf9546ac586a.png" alt="Pass_01.PNG" title="Pass_01.PNG"><br><br><strong>打开HackBar,载入路径:</strong><br><a href="http://127.0.0.1/upload-labs-master/Pass-01" target="_blank" rel="noopener">http://127.0.0.1/upload-labs-master/Pass-01</a><br><br><strong>又由上面的上传路径：</strong>../upload//3.jpg  <br><br><strong>两个相抵消可以找到照片存放的目录为：</strong><br><a href="http://127.0.0.1/upload-labs-master/upload//3.jpg" target="_blank" rel="noopener">http://127.0.0.1/upload-labs-master/upload//3.jpg</a><br><img src="https://i.loli.net/2018/11/24/5bf9546c5b3ea.png" alt="Pass_02.PNG" title="Pass_02.PNG"><br><br><strong>当我们上传一个php格式的文件时，发现会报错。嘿嘿,根据提示，我们知道：本pass在客户端使用js对不合法图片进行检查！即，我们可以伪造一张图片，进行上传。<br>所以，将制作的php文件后缀名改成图片格式：</strong><br><br><img src="https://i.loli.net/2018/11/24/5bf9546accac3.png" alt="Pass_03.PNG" title="Pass_03.PNG"><br><br><strong>上传，利用burpsuite 更改回其格式后，上传成功。</strong><br><br><img src="https://i.loli.net/2018/11/24/5bf9546b799df.png" alt="Pass_04.PNG" title="Pass_04.PNG"><br><strong>便可以访问上传的php文件了。</strong><br><br><img src="https://i.loli.net/2018/11/24/5bf9546bddb8b.png" alt="Pass_05.PNG" title="Pass_05.PNG"><br><br>&ensp;&ensp;&ensp;Pass-02中，根据提示：本pass在服务端对数据包的MIME进行检查！ 即针对：Content-Type: image/jpeg  中的格式进行限制。所以，Pass-01中的方法仍然适用…</p>
+<hr>
+<p>&ensp;&ensp;&ensp;其实，pzctf中<a href="http://h.pzctf.com:8000/" target="_blank" rel="noopener">文件上传漏洞</a>那道题，也很相似。在此之前我们需要了解一下PHP一句话木马，Apache漏洞知识。<br><br>&ensp;&ensp;&ensp;一句话木马：通过<br><code>$_GET[&#39; &#39;]、$_POST[&#39; &#39;]、$_COOKIE[&#39; &#39;]</code>，接收我们所传递的指令,并将接收的数据传递给执行命令的函数，进而执行命令。<br><br>&ensp;&ensp;&ensp;Apache解析漏洞：在面对多后缀的文件时，它采取的是从右往左读取识别。即：文件扩展名为：<code>.php.aa.gf</code>当通过浏览器请求这个文件时，因为第一个后缀名.gf是无法识别的，apache会继续处理.aa,同样无法识别，直到最后识别出.php，那么最后这个文件将被作为php文件解析并执行。也就是说，当我们上传一个xx.php.jpg 格式的文件时，Apache先读取了.jpg 格式，发现识别得了，且可以上传。</p>
+<p>同样，首先进行常规测试，找到其存放上传文件的目录。对于此题，我们可以采用不断尝试的方法……<br><br><img src="https://i.loli.net/2018/11/24/5bf965b21a66b.png" alt="pzctf_01.png" title="pzctf_01.png"><br></p>
+<p>发现报错，找不到此url，我们试一试删掉前面的var/；发现还是报错；则再将www/也删除…最后，我们发现其路径为：<a href="http://h.pzctf.com:8000/uploadfiles/1.jpg" target="_blank" rel="noopener">http://h.pzctf.com:8000/uploadfiles/1.jpg</a><br></p>
+<p>根据一句话木马制作一个内容为：<br><code>&lt;?php @eval($_POST[&#39;aa&#39;]);?&gt; //通过$_POST[&#39; &#39;]，接收指令，将其传给eval（）函数</code><br>倘若我们采用上面的Pass-01的方式（采用.jpg，在burpsuite中更改），则我们可以发现，其显示：<br><code>flag in flag.phpFile uploaded successfully: /var/www/html/uploadfiles/1.jpg</code><br>所以，我们利用Apache漏洞，将其格式改为 <code>.php.jpg</code></p>
+<p>在伪照片的根目录下进性操作，可以读取phpinfo();<br><img src="https://i.loli.net/2018/11/24/5bf965b2689b3.png" alt="pzctf_02.png" title="pzctf_02.png"><br><br>利用show_source()函数读取flag.php<br><img src="https://i.loli.net/2018/11/24/5bf965b26a4f4.png" alt="pzctf_03.png" title="pzctf_03.png"><br>木马图片上传后存放的位置是在/uploadfiles/123.php.jpg下，而flag.php在其上一层目录，所以括号里是：<code>&quot;../flag.php&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JocelynATaylor.github.io/2018/11/24/文件漏洞/" data-id="cjovnfnxi0003a8qq10lvy5do" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/18/First blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">web常见的漏洞解析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Jocelyn space</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2018/11/22/5bf69d6f334de.jpeg">
+    <h2 class="author">Jocelyn</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>3</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://shell01.top/" target="_blank" title="Shell01">
+          Shell01
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 Jocelyn<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

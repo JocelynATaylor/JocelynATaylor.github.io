@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>文件上传漏洞（二） | Jocelyn space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;继上次的upload-labs，介绍后面几关的知识点以及过关方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传漏洞（二）">
+<meta property="og:url" content="http://JocelynATaylor.github.io/2018/12/02/文件漏洞（二）/index.html">
+<meta property="og:site_name" content="Jocelyn space">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;继上次的upload-labs，介绍后面几关的知识点以及过关方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c14eaf397.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c14cf23c3.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c14c5d51f.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c14c5a33f.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c2bd843b7.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c14c5a51f.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c2bd8738e.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c2bde1dcd.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c2bdeda11.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c2be10d6b.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c14c5a33f.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c2be16460.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c47ae5ac8.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03c47aea8ab.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03d363c749d.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03d36183c19.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03d60cb7eb2.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03d60d10daa.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03d36188013.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/02/5c03d362a5f8e.png">
+<meta property="og:updated_time" content="2018-12-02T13:16:48.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件上传漏洞（二）">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;继上次的upload-labs，介绍后面几关的知识点以及过关方法。">
+<meta name="twitter:image" content="https://i.loli.net/2018/12/02/5c03c14eaf397.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jocelyn space" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2018/11/22/5bf69d6f334de.jpeg">
+    <h2 class="author">Jocelyn</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>4</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-文件漏洞（二）" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/02/文件漏洞（二）/" class="article-date">
+  <time class="post-time" datetime="2018-12-02T13:11:36.597Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br>
+    <span class="post-day">02</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      文件上传漏洞（二）
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&ensp;&ensp;&ensp;继上次的upload-labs，介绍后面几关的知识点以及过关方法。<br><a id="more"></a><br>&ensp;&ensp;&ensp;小编先在此友好提示一下，下面这张图，挺棒的…大家不要像我一开始一样，忽视了它的存在。<br>为了更好的理解，我还是乖乖地了解了一下，黑名单与白名单的“定义”。<br><br>&ensp;&ensp;&ensp;简单的说，黑名单便是：设置不能通过的后缀名，黑名单以外的用户都能够通过。即我们要找到黑名单的漏洞，上传木马文件；白名单则是：设置能通过的后缀名，白名单以外的用户不能通过。<br><img src="https://i.loli.net/2018/12/02/5c03c14eaf397.png" alt="Up_00.PNG" title="Up_00.PNG"><br>&ensp;&ensp;&ensp;本次，我们将通过源代码来探讨。下面先介绍几个函数：<br><br><code>file_exists() 函数检查文件或目录是否存在。</code><br><br><code>trim() 函数移除字符串两侧的空白字符或其他预定义字符。</code><br><br><code>strrchr() 函数查找字符串在另一个字符串中最后一次出现的位置，并返回从该位置到字符串结尾的所有字符。&lt;br&gt;
+str_ireplace() 函数替换字符串中的一些字符（不区分大小写）。</code><br><br><code>in_array() 函数搜索数组中是否存在指定的值。</code><br></p>
+<h3 id="Pass-03"><a href="#Pass-03" class="headerlink" title="Pass-03"></a>Pass-03</h3><p><img src="https://i.loli.net/2018/12/02/5c03c14cf23c3.png" alt="Up_02-1.PNG" title="Up_02-1.PNG"><br><br>由以上的源代码，尤其是这句：<code>if(!in_array($file_ext, $deny_ext))</code>中的感叹号，<br>可知这是上面所说的黑名单。我们也可以从中知道，我们的文件名若是后缀名有”点”、大写了、有::$DATA 或者是有空格的伪格式，都无法上传成功木马文件。即我们无法通过后缀<strong>大小写绕过</strong>、<strong>点绕过</strong>、<strong>空格绕过</strong>、<strong>::$DATA绕过</strong> ，也就是图一的3–6点。<br>例如：上传一个 文件名末尾有点的文件，“a.php.”  发现报错了。<br><img src="https://i.loli.net/2018/12/02/5c03c14c5d51f.png" alt="Up_01-1.PNG" title="Up_01-1.PNG"><br><br>我们可以用图一黑名单中的第一种方法，上传特殊即可解析后缀。符合的后缀包括 php、php3、php4、php5、phtml等。如下图：<br><img src="https://i.loli.net/2018/12/02/5c03c14c5a33f.png" alt="Up_02.PNG" title="Up_02.PNG"><br><br>上传成功，我们可以在我们本地文件中找到它<br><img src="https://i.loli.net/2018/12/02/5c03c2bd843b7.png" alt="Up_03.PNG" title="Up_03.PNG"><br></p>
+<p>访问其文件，发现成功跳转，但显示不出phpinfo页面。最后找到了一个方法，上传.htaccess 文件。.htaccess 是apache服务器中的一个配置文件，不是上传的文件的黑名单之内，因此可以上传成功。<br><br>创建.htaccess 文件的方法：<br><br>打开 cmd， 在你要创建的根目录下，输入 copy con .htaccess 回车<br><br>再输入 SetHandler application/x-httpd-php  回车，便可在文件中找到.htaccess 文件<br><br><img src="https://i.loli.net/2018/12/02/5c03c14c5a51f.png" alt="Up_01.PNG" title="Up_01.PNG"><br><br>发现再次打开链接，则成功。<br><br><img src="https://i.loli.net/2018/12/02/5c03c2bd8738e.png" alt="Up_04.PNG" title="Up_04.PNG"><br></p>
+<h3 id="Pass-04"><a href="#Pass-04" class="headerlink" title="Pass-04"></a>Pass-04</h3><p> 源代码，<br><br><img src="https://i.loli.net/2018/12/02/5c03c2bde1dcd.png" alt="Up_05.PNG" title="Up_05.PNG"><br>黑名单中多出了此限定。则，我们可以采用图片木马。同样，我们得确定上传的文件夹中含有.htaccess文件。<br><br></p>
+<h3 id="Pass-05"><a href="#Pass-05" class="headerlink" title="Pass-05"></a>Pass-05</h3><p>对比前几个源代码，发现少了<br><code>$file_ext = strtolower($file_ext); //转换为小写</code><br>则，我们可以通过后缀大写来摆脱。<br><br><img src="https://i.loli.net/2018/12/02/5c03c2bdeda11.png" alt="Up_07.PNG" title="Up_07.PNG"></p>
+<h3 id="Pass-06"><a href="#Pass-06" class="headerlink" title="Pass-06"></a>Pass-06</h3><p>少了此黑名单限定：<br><code>$file_ext = trim($file_ext); //收尾去空</code><br>此题，我们利用Windows系统的文件名特性（Windows系统自动去除 . 和空格的特性）。文件名最后增加点和空格，写成a.php.，上传后保存在Windows系统上的文件名最后的一个.会被去掉，实际上保存的文件名就是a.php<br><img src="https://i.loli.net/2018/12/02/5c03c2be10d6b.png" alt="Up_08.PNG" title="Up_08.PNG"></p>
+<h3 id="Pass-07"><a href="#Pass-07" class="headerlink" title="Pass-07"></a>Pass-07</h3><p>少了此黑名单限定：<br><code>$file_name = deldot($file_name);//删除文件名末尾的点</code><br><img src="https://i.loli.net/2018/12/02/5c03c14c5a33f.png" alt="Up_02.PNG" title="Up_02.PNG"></p>
+<h3 id="Pass-08"><a href="#Pass-08" class="headerlink" title="Pass-08"></a>Pass-08</h3><p>同样少了此黑名单限定：<br><code>$file_ext = str_ireplace(&#39;::$DATA&#39;, &#39;&#39;, $file_ext);//去除字符串::$DATA</code><br><img src="https://i.loli.net/2018/12/02/5c03c2be16460.png" alt="Up_09.PNG" title="Up_09.PNG"></p>
+<h3 id="Pass-09"><a href="#Pass-09" class="headerlink" title="Pass-09"></a>Pass-09</h3><p>关键语句则是：<br><code>$img_path = UPLOAD_PATH.&#39;/&#39;.$file_name;</code><br>与06关类似<br>用“点+空格+点”绕过。<br><img src="https://i.loli.net/2018/12/02/5c03c47ae5ac8.png" alt="Up_10.PNG" title="Up_10.PNG"></p>
+<h3 id="Pass-10"><a href="#Pass-10" class="headerlink" title="Pass-10"></a>Pass-10</h3><p>关键语句则是：<br><code>$file_name = str_ireplace($deny_ext,&quot;&quot;, $file_name);</code><br>它会将$deny_ext中出现的后缀，替换成空格。所以，我们利用pphphp这样的后缀绕过。<br><img src="https://i.loli.net/2018/12/02/5c03c47aea8ab.png" alt="Up_11.PNG" title="Up_11.PNG"></p>
+<p>以上便是黑名单的练习题。然而，在进入下面的练习前，我们得先了解一下一个函数：<br><code>magic_quotes_gpc函数：</code>在php中的作用是判断解析用户提示的数据，如包括有：post、get、cookie过来的数据增加转义字符“\”，以确保这些数据不会引起程序。<br><br><code>substr()函数：返回字符串的一部分。</code><br>例如：<br><code>&lt;?php
+echo substr(&quot;Hello world&quot;,6);
+?&gt;
+//输出World</code><br><code>strrpos()函数：查找字符串在另一字符串中最后一次出现的位置。</code></p>
+<h3 id="Pass-11"><a href="#Pass-11" class="headerlink" title="Pass-11"></a>Pass-11</h3><p><img src="https://i.loli.net/2018/12/02/5c03d363c749d.png" alt="Up_11_01.PNG" title="Up_11_01.PNG"><br>我们注意到：<br>此语句<code>if(in_array($file_ext,$ext_arr))</code>中，以没有了 ！号，且<br><code>$img_path = $_GET[&#39;save_path&#39;].&quot;/&quot;.rand(10, 99).date(&quot;YmdHis&quot;).&quot;.&quot;.$file_ext;</code><br>可知道这里采用了GET方法，是白名单验证。<br>我们采用%00截断<br><img src="https://i.loli.net/2018/12/02/5c03d36183c19.png" alt="Up_11_1.PNG" title="Up_11_1.PNG"><br><img src="https://i.loli.net/2018/12/02/5c03d60cb7eb2.png" alt="1111111.PNG" title="1111111.PNG"><br>我们可以看到，返回的路径中，已被我们修改且截断了。而我们实际上传的则是php文件了。<br>所以我们只需访问11.php<br><img src="https://i.loli.net/2018/12/02/5c03d60d10daa.png" alt="Up_11_2_1.PNG" title="Up_11_2_1.PNG"></p>
+<h3 id="Pass-12"><a href="#Pass-12" class="headerlink" title="Pass-12"></a>Pass-12</h3><p>关键句：<br><code>$img_path = $_POST[&#39;save_path&#39;].&quot;/&quot;.rand(10, 99).date(&quot;YmdHis&quot;).&quot;.&quot;.$file_ext;</code><br>此题采用的是POST方法，也是用00截断，此次是在二进制中修改。将下图框住的地方改为00；<br><img src="https://i.loli.net/2018/12/02/5c03d36188013.png" alt="Up_12_1.PNG" title="Up_12_1.PNG"><br><br>成功上传：<br><img src="https://i.loli.net/2018/12/02/5c03d362a5f8e.png" alt="Up_12_2.PNG" title="Up_12_2.PNG"></p>
+<hr>
+<p>最后，告诉大家，其实上周讲的利用一句话木马图片+Apache漏洞（将其格式改为 .php.jpg）+.htaccess这个方法，感觉才是王道，放在每一关都成功。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JocelynATaylor.github.io/2018/12/02/文件漏洞（二）/" data-id="cjp6wua2y0004agqqdsljz0tm" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/24/文件漏洞/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">文件上传漏洞</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Jocelyn space</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://i.loli.net/2018/11/22/5bf69d6f334de.jpeg">
+    <h2 class="author">Jocelyn</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>4</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://shell01.top/" target="_blank" title="Shell01">
+          Shell01
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 Jocelyn<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
